@@ -7,6 +7,7 @@ public class HomepageTest {
         // something
         helperMethod();
         // assert somethig
+        // conflict-conflict?
     }
 
     private static void helperMethod() {
