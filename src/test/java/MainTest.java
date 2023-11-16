@@ -8,6 +8,8 @@ public class MainTest {
     public static void firstTest() {
         WebDriver driver = new ChromeDriver();
 
-        driver.get("https://litecart.stqa.ru/en/rubber-ducks-c-1/red-duck-p-3");
+        driver.get("https://litecart.stqa.ru/en/rubber-ducks-c-1/");
+
+        // some code that fixes main test
     }
 }
