@@ -4,9 +4,9 @@ public class HomepageTest {
 
     @Test
     public static void someHomepageTest() {
-        // something
         helperMethod();
         // assert somethig
+        // changes that should conflict
     }
 
     private static void helperMethod() {
