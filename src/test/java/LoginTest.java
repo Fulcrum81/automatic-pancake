@@ -1,14 +1,23 @@
+import org.testng.Assert;
 import org.testng.annotations.Test;
 
-public class LoginTest {
+public class LoginTest extends TestBase {
 
-    @Test
+    @Test(groups = "smoke")
     public static void loginWithCorrectCreds() {
-        //code to open browser and login with correct credentials
+        System.out.println("TEST: login with correct credentials");
     }
 
-    @Test
+    @Test(groups = { "smoke", "regression" })
     public static void loginWithEmptyUsername() {
-        //code to open browser and login with empty username
+//        int[] array = { 1, 2, 3 };
+//        int x = array[6];
+
+        System.out.println("TEST: login with empty username");
+
+        int a = 17;
+        int b = 15;
+
+        Assert.assertTrue(a < b, "Expected a to be greater than b: a = " + a + ", b = " + b);
     }
 }
