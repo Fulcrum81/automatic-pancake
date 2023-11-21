@@ -1,17 +1,15 @@
 import org.testng.annotations.Test;
 
-public class HomepageTest {
+public class HomepageTest extends TestBase {
 
-    @Test
-    public static void someHomepageTest() {
-        // something
+    @Test(groups = "smoke", timeOut = 1000)
+    public static void someHomepageTest() throws InterruptedException {
+        System.out.println("TEST: homepage test");
         helperMethod();
-        // assert somethig
-        // changes that should conflict
-        // conflict-conflict?
     }
 
-    private static void helperMethod() {
-        // do something helpful
+    private static void helperMethod() throws InterruptedException {
+        System.out.println("HELPER: doing something helpful");
+        Thread.sleep(2000);
     }
 }
