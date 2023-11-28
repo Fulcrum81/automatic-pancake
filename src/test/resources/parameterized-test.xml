@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="Regression suite" parallel="tests" thread-count="3">
+    <test name="parameterized-1">
+        <parameter name="number" value="1"/>
+        <classes>
+            <class name="UnitTest"/>
+        </classes>
+    </test>
+    <test name="parameterized-2">
+        <parameter name="number" value="4"/>
+        <classes>
+            <class name="UnitTest"/>
+        </classes>
+    </test>
+    <test name="parameterized-3">
+        <parameter name="number" value="56"/>
+        <classes>
+            <class name="UnitTest"/>
+        </classes>
+    </test>
+</suite>
