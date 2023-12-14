@@ -1,29 +1,26 @@
 package patterns.staticpo;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
+import static com.codeborne.selenide.Selenide.$;
+import static patterns.staticpo.Locators.getLocator;
+
 public class LoginPage {
-
-    private static By loginInput = By.name("email");
-    private static By passwordInput = By.name("password");
-    private static By loginButton = By.name("login");
-
-    public static void setLogin(WebDriver driver, String login) {
-        driver.findElement(loginInput).sendKeys(login);
+    public static void setLogin(String login) throws Exception {
+        $(getLocator("loginPage.loginInput")).sendKeys(login);
     }
 
-    public static void setPassword(WebDriver driver, String password) {
-        driver.findElement(passwordInput).sendKeys(password);
+    public static void setPassword(String password) throws Exception {
+        $(getLocator("loginPage.passwordInput")).sendKeys(password);
     }
 
-    public static void clickLoginButton(WebDriver driver) {
-        driver.findElement(loginButton).click();
+    public static void clickLoginButton() throws Exception {
+        $(getLocator("loginPage.loginButton")).click();
     }
 
-    public static void login(WebDriver driver, String login, String password) {
-        driver.findElement(loginInput).sendKeys(login);
-        driver.findElement(passwordInput).sendKeys(password);
-        driver.findElement(loginButton).click();
+    public static void login(String login, String password) throws Exception {
+        $(getLocator("loginPage.loginInput")).sendKeys(login);
+        $(getLocator("loginPage.passwordInput")).sendKeys(password);
+        $(getLocator("loginPage.loginButton")).click();
     }
 }

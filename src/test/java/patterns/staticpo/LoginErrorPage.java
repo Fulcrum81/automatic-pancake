@@ -1,17 +1,21 @@
 package patterns.staticpo;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
+import com.codeborne.selenide.Condition;
+
+import static com.codeborne.selenide.Selenide.$;
+import static patterns.staticpo.Locators.getLocator;
 
 public class LoginErrorPage {
 
-    private static By errorMessage = By.cssSelector("#notices>.notice.errors");
-
-    public static String getErrorMessageText(WebDriver driver) {
-        return driver.findElement(errorMessage).getText();
+    public static void validateErrorMessageText(String errorMessage) throws Exception {
+        $(getLocator("loginErrorPage.errorMessage")).shouldHave(Condition.text(errorMessage));
     }
 
-    public static boolean errorMessageIsVisible(WebDriver driver) {
-        return driver.findElement(errorMessage).isDisplayed();
+    public static void errorMessageIsVisible() throws Exception {
+        $(getLocator("loginErrorPage.errorMessage")).shouldBe(Condition.visible);
+    }
+
+    public static void errorMessageIsInvisible() throws Exception {
+        $(getLocator("loginErrorPage.errorMessage")).shouldNot(Condition.visible);
     }
 }

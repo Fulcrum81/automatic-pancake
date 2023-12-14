@@ -1,36 +1,34 @@
 package patterns.staticpo;
 
+import com.codeborne.selenide.Configuration;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
+
+import static com.codeborne.selenide.Browsers.CHROME;
+import static com.codeborne.selenide.Selenide.open;
 
 public class LoginTest {
 
     private static String wrongPasswordErrorMessage = "Wrong password or the account is disabled, or does not exist";
 
     @Test
-    public static void invalidLoginTest() throws InterruptedException {
-        WebDriver driver = new ChromeDriver();
-        SoftAssert softAssert = new SoftAssert();
+    public static void invalidLoginTestSelenide() throws Exception {
 
-        driver.manage().window().maximize();
-        driver.get("https://litecart.stqa.ru/en/");
+        Configuration.browser = System.getProperty("browser", "chrome");
+        Configuration.browserSize = "1920x1080";
 
-        CertificatePage.acceptCertificate(driver);
+        open("https://litecart.stqa.ru/en/");
 
-        LoginPage.login(driver, "Skjhkasclhj", "kajakjjkhahskhjk");
+//        CertificatePage.acceptCertificate();
 
-        String messageText = LoginErrorPage.getErrorMessageText(driver);
-        boolean messageIsDisplayed = LoginErrorPage.errorMessageIsVisible(driver);
+        LoginPage.login("Skjhkasclhj", "kajakjjkhahskhjk");
 
-        softAssert.assertEquals(messageText,wrongPasswordErrorMessage);
-        softAssert.assertTrue(messageIsDisplayed, "Error message is not visible");
+        LoginErrorPage.validateErrorMessageText(wrongPasswordErrorMessage);
+        LoginErrorPage.errorMessageIsVisible();
+
         Thread.sleep(15500); // waiting for 15 seconds until the message disappears
-        messageIsDisplayed = LoginErrorPage.errorMessageIsVisible(driver);
-        softAssert.assertFalse(messageIsDisplayed,"Error message is still displayed after 15 seconds");
-        softAssert.assertAll();
-
-        driver.quit();
+        LoginErrorPage.errorMessageIsInvisible();
     }
 }
