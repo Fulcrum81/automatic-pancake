@@ -38,4 +38,10 @@ public class LoginPage {
         $(getLocator("loginPage.loginButton")).click();
         LOG.debug("Login operation complete");
     }
+
+    @Step("Clicking New Customers link")
+    public static void clickNewCustomerLink() throws Exception {
+        LOG.info("Clicking new customer link");
+        $(getLocator("loginPage.newCustomerLink")).click();
+    }
 }
