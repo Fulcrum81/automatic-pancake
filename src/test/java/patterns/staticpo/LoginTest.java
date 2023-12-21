@@ -8,6 +8,7 @@ import io.qameta.allure.Epic;
 import io.qameta.allure.Feature;
 import org.apache.log4j.Logger;
 import org.apache.log4j.LogManager;
+import org.openqa.selenium.By;
 import org.openqa.selenium.Platform;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
@@ -99,7 +100,7 @@ public class LoginTest {
     @Description("Broken Validate that the welcome message appears when logged in with correct credentials")
     public static void brokenLoginWithCorrectCredentialsWelcomeMessageTest() throws Exception {
         LoginPage.login("vadim.zubovich@gmail.com", "Test1234!");
-        $("slakjdh").click();
+        WebDriverRunner.getWebDriver().findElement(By.tagName("slakjdh")).click();
         UserHomePage.validateWelcomeMessage("WELCOME_MESSAGE");
     }
 
