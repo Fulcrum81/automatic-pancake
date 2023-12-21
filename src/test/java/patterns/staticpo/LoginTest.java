@@ -9,10 +9,8 @@ import io.qameta.allure.Feature;
 import org.apache.log4j.Logger;
 import org.apache.log4j.LogManager;
 import org.openqa.selenium.Platform;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
-import org.openqa.selenium.safari.SafariOptions;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Listeners;
@@ -20,8 +18,6 @@ import org.testng.annotations.Test;
 
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.util.HashMap;
-import java.util.Map;
 
 import static com.codeborne.selenide.Browsers.CHROME;
 import static com.codeborne.selenide.Selenide.open;
@@ -90,10 +86,19 @@ public class LoginTest {
         UserHomePage.validateWelcomeMessage(WELCOME_MESSAGE);
     }
 
+    @Test
+    @Description("Fail Validate that the welcome message appears when logged in with correct credentials")
+    public static void failLoginWithCorrectCredentialsWelcomeMessageTest() throws Exception {
+
+        LoginPage.login("vadim.zubovich@gmail.com", "Test1234!");
+        UserHomePage.validateWelcomeMessage("WELCOME_MESSAGE");
+    }
+
     @AfterMethod
     public static void methodTeardown() {
         WebDriverRunner.closeWebDriver();
     }
+
 
     //    @AfterMethod
 //    public static void teardown(Method method, ITestResult testResult) {
