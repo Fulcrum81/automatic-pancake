@@ -39,8 +39,17 @@ public class LoginTest {
 
         URL hubUrl = new URL("http://192.168.249.1:4444/wd/hub");
         DesiredCapabilities caps = new DesiredCapabilities();
-        caps.setPlatform(Platform.WINDOWS);
-        caps.setBrowserName(CHROME);
+
+        String platform = System.getProperty("platform", "windows");
+
+        switch(platform) {
+            case "windows" -> caps.setPlatform(Platform.WINDOWS);
+            case "linux" -> caps.setPlatform(Platform.LINUX);
+        }
+
+        String browser = System.getProperty("browser", "chrome");
+
+        caps.setBrowserName(browser);
 
         RemoteWebDriver driver = new RemoteWebDriver(hubUrl, caps);
         driver.manage().window().maximize();
