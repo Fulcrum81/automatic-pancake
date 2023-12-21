@@ -20,6 +20,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 
 import static com.codeborne.selenide.Browsers.CHROME;
+import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
 
 @Listeners({ScreenshotListener.class, SoftAsserts.class})
@@ -91,6 +92,14 @@ public class LoginTest {
     public static void failLoginWithCorrectCredentialsWelcomeMessageTest() throws Exception {
 
         LoginPage.login("vadim.zubovich@gmail.com", "Test1234!");
+        UserHomePage.validateWelcomeMessage("WELCOME_MESSAGE");
+    }
+
+    @Test
+    @Description("Broken Validate that the welcome message appears when logged in with correct credentials")
+    public static void brokenLoginWithCorrectCredentialsWelcomeMessageTest() throws Exception {
+        LoginPage.login("vadim.zubovich@gmail.com", "Test1234!");
+        $("slakjdh").click();
         UserHomePage.validateWelcomeMessage("WELCOME_MESSAGE");
     }
 
